@@ -1,1 +1,0 @@
-import{_ as t,o as a,c,a as e,b as n}from"./app-a9949779.js";const o={},r=e("h1",{id:"h函数",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#h函数","aria-hidden":"true"},"#"),n(" h函数")],-1),s=[r];function _(h,d){return a(),c("div",null,s)}const f=t(o,[["render",_],["__file","hfunction.html.vue"]]);export{f as default};

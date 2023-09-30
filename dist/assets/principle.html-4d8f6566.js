@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-1e10a238","path":"/v2/template/principle.html","title":"实现原理","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1696076596000,"contributors":[{"name":"liuchenxing","email":"2076434315@gmail.com","commits":1}]},"filePathRelative":"v2/template/principle.md"}');export{e as data};
