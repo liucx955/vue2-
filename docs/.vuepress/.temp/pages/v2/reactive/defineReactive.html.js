@@ -1,0 +1,1 @@
+export const data = JSON.parse("{\"key\":\"v-4e804c09\",\"path\":\"/v2/reactive/defineReactive.html\",\"title\":\"defineReactive函数\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[],\"git\":{\"updatedTime\":1696076596000,\"contributors\":[{\"name\":\"liuchenxing\",\"email\":\"2076434315@gmail.com\",\"commits\":1}]},\"filePathRelative\":\"v2/reactive/defineReactive.md\"}")

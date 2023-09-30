@@ -1,0 +1,1 @@
+import{_ as t,o as a,c as o,a as e,b as r}from"./app-a9949779.js";const c={},n=e("h1",{id:"指针思想",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#指针思想","aria-hidden":"true"},"#"),r(" 指针思想")],-1),s=[n];function _(d,i){return a(),o("div",null,s)}const l=t(c,[["render",_],["__file","pointer.html.vue"]]);export{l as default};

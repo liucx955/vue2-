@@ -1,0 +1,1 @@
+import{_ as r,o as t,c as o,a as e,b as a}from"./app-a9949779.js";const n={},c=e("h1",{id:"defineproperty",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#defineproperty","aria-hidden":"true"},"#"),a(" defineProperty")],-1),d=[c];function s(i,_){return t(),o("div",null,d)}const p=r(n,[["render",s],["__file","defineProperty.html.vue"]]);export{p as default};

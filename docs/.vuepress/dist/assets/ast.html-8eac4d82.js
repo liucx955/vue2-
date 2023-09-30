@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-fc5ba59c","path":"/v2/template/ast.html","title":"AST的介绍","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1696076596000,"contributors":[{"name":"liuchenxing","email":"2076434315@gmail.com","commits":1}]},"filePathRelative":"v2/template/ast.md"}');export{t as data};

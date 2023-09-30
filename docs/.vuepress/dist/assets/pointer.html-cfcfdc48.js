@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-41de40d7","path":"/v2/template/pointer.html","title":"指针思想","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1696076596000,"contributors":[{"name":"liuchenxing","email":"2076434315@gmail.com","commits":1}]},"filePathRelative":"v2/template/pointer.md"}');export{e as data};
