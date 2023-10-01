@@ -3,15 +3,19 @@ import { defaultTheme } from "vuepress";
 export default defaultTheme({
   home: "/",
   lang: "zh-CN",
-  title: "1123",
   logo: "/images/hero.png",
   backToHome: "返回首页",
   logoDark: "https://vuejs.org/images/logo.png",
   navbar: [
     {
-      text: "模版编译",
+      text: "mustache",
       children: [
-        { text: "编译流程", link: "/v2/template/flow" },
+        { text: "模板引擎", link: "/v2/mustache/engine" },
+      ],
+    },
+    {
+      text: "AST",
+      children: [
         { text: "AST介绍", link: "/v2/template/ast" },
         { text: "AST指针思想", link: "/v2/template/pointer" },
         { text: "AST实现原理", link: "/v2/template/principle" },
@@ -33,24 +37,27 @@ export default defaultTheme({
     },
   ],
   sidebar: {
+    "/v2/mustache/": [
+      {
+        text: "模版引擎",
+        children: ["engine"],
+      },
+    ],
     "/v2/template/": [
       {
-        text: "模版编译",
-        collapsible: false,
-        children: ["flow", "ast", "pointer", "principle"],
+        text: "AST",
+        children: [ "ast", "pointer", "principle"],
       },
     ],
     "/v2/vnode/": [
       {
         text: "VNODE和diff",
-        collapsible: false,
         children: ["hfunction", "introduce"],
       },
     ],
     "/v2/reactive/": [
       {
         text: "VNODE和diff",
-        collapsible: false,
         children: ["defineProperty", "defineReactive"],
       },
     ],

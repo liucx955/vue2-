@@ -9470,7 +9470,7 @@ var VueElement = class _VueElement extends BaseClass {
     }
   }
 };
-function useCssModule(name = "$style") {
+function useCssModule(name = "$styles") {
   {
     const instance = getCurrentInstance();
     if (!instance) {
