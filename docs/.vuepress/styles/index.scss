@@ -1,5 +1,11 @@
 // 覆盖默认主题样式
 :root{
+  // 内容区宽度
   --content-width: 780px !important;
+  // 侧边栏宽度
   --sidebar-width: 16rem !important;
+  // 引用框样式
+  --c-text-quote:#666!important;
+  --c-border-dark: #3eaf7c!important;
 }
+

@@ -1,6 +1,16 @@
 <template><div><h1 id="ast实现原理" tabindex="-1"><a class="header-anchor" href="#ast实现原理" aria-hidden="true">#</a> AST实现原理</h1>
-<h2 id="ast中用到了哪些思想" tabindex="-1"><a class="header-anchor" href="#ast中用到了哪些思想" aria-hidden="true">#</a> AST中用到了哪些思想</h2>
-<p>123</p>
+<h2 id="ast的思路" tabindex="-1"><a class="header-anchor" href="#ast的思路" aria-hidden="true">#</a> AST的思路</h2>
+<ul>
+<li>使用正则表达式来判断开始标签、结束标签、文字内容</li>
+<li>使用指针来决定什么时候循环结束，每次处理完标签或一个文本后，指针就往后跳</li>
+<li>使用两个栈来进行运算，当遇到 &lt;&gt;标签 时进栈，遇到 &lt;/&gt;标签 出栈
+<ul>
+<li>栈1 存储标签</li>
+<li>栈2 存储文字内容</li>
+</ul>
+</li>
+<li>标签里面的属性也要处理，处理成attrs数组</li>
+</ul>
 <h2 id="实现一个ast" tabindex="-1"><a class="header-anchor" href="#实现一个ast" aria-hidden="true">#</a> 实现一个AST</h2>
 <ul>
 <li>把attrsString变为数组返回</li>

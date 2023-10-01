@@ -46,6 +46,15 @@
 <p>h函数执行后变成虚拟节点，虚拟节点经过diff算法之后，就显示在了页面上</p>
 </div>
 <p>关于h函数的知识，点击跳转：<a href="/v2/vnode/hfunction">VNODE和diff -&gt; h函数</a></p>
+<h2 id="ast和mustache模板引擎的关系" tabindex="-1"><a class="header-anchor" href="#ast和mustache模板引擎的关系" aria-hidden="true">#</a> AST和Mustache模板引擎的关系</h2>
+<p>Vue的AST和Mustache模板引擎在Vue的模板编译过程中扮演不同的角色。</p>
+<ul>
+<li>Mustache模板引擎是Vue用来解析模板语法并生成HTML的一种方式。</li>
+<li>抽象语法树（AST）是Vue模板编译器的一部分。</li>
+</ul>
+<blockquote>
+<p>总的来说， 用户编写的Vue模板通过Mustache模板引擎进行解析，生成AST，然后由Vue运行时系统使用AST来更新DOM。</p>
+</blockquote>
 </div></template>
 
 
