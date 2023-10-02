@@ -8,58 +8,40 @@ export default defaultTheme({
   logoDark: "https://vuejs.org/images/logo.png",
   navbar: [
     {
-      text: "mustache",
+      text: "模板和渲染相关",
       children: [
-        { text: "模板引擎", link: "/v2/mustache/engine" },
-      ],
-    },
-    {
-      text: "AST",
-      children: [
-        { text: "AST介绍", link: "/v2/template/ast" },
-        { text: "AST指针思想", link: "/v2/template/pointer" },
-        { text: "AST实现原理", link: "/v2/template/principle" },
-      ],
-    },
-    {
-      text: "VNODE和diff",
-      children: [
-        { text: "h函数", link: "/v2/vnode/hfunction" },
-        { text: "diff介绍", link: "/v2/vnode/introduce" },
+        { text: "模板编译流程", link: "/v2/template/flow" },
+        { text: "AST", link: "/v2/template/ast" },
+        { text: "h函数", link: "/v2/template/hfunction" },
+        { text: "虚拟DOM和diff", link: "/v2/template/vnode" },
+        { text: "Mustache模板引擎", link: "/v2/template/mustache" },
+        { text: "Snabbdom", link: "/v2/template/snabbdom" },
       ],
     },
     {
       text: "响应式原理",
       children: [
         { text: "defineProperty", link: "/v2/reactive/defineProperty" },
-        { text: "defineReactive函数", link: "/v2/vnode/defineReactive" },
+        { text: "defineReactive函数", link: "/v2/reactive/defineReactive" },
+        { text: "new Vue()", link: "/v2/reactive/newvue" },
       ],
     },
   ],
   sidebar: {
-    "/v2/mustache/": [
-      {
-        text: "模版引擎",
-        children: ["engine"],
-      },
-    ],
     "/v2/template/": [
       {
-        text: "AST",
-        children: [ "ast", "pointer", "principle"],
-      },
-    ],
-    "/v2/vnode/": [
-      {
-        text: "VNODE和diff",
-        children: ["hfunction", "introduce"],
+        // collapsible:true,
+        text: "模板编译",
+        children: [ "flow", "ast", "hfunction","vnode","mustache","snabbdom"],
       },
     ],
     "/v2/reactive/": [
       {
-        text: "VNODE和diff",
-        children: ["defineProperty", "defineReactive"],
+        // collapsible:true,
+        text: "响应式原理",
+        children: ["defineProperty", "defineReactive","newvue"],
       },
     ],
   },
+
 });

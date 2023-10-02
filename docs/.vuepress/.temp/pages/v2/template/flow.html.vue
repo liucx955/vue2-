@@ -1,11 +1,33 @@
-<template><div><h1 id="模版编译流程" tabindex="-1"><a class="header-anchor" href="#模版编译流程" aria-hidden="true">#</a> 模版编译流程</h1>
-<p>模版的编译流程分为以下几步：</p>
+<template><div><h1 id="模板编译" tabindex="-1"><a class="header-anchor" href="#模板编译" aria-hidden="true">#</a> 模板编译</h1>
+<h2 id="模板如何转换为元素" tabindex="-1"><a class="header-anchor" href="#模板如何转换为元素" aria-hidden="true">#</a> 模板如何转换为元素</h2>
+<p>在 Vue 2 中，将模板转换为元素经历以下几个步骤：</p>
 <ol>
-<li>解析模版字符串，生成AST抽象语法树</li>
-<li>对AST进行优化，添加静态标记</li>
-<li>使用diff算法复用模版</li>
-<li>根据优化后的AST生成render函数</li>
+<li>
+<p>模板解析：Vue 2 的编译器会解析模板，识别其中的指令、插值表达式等,并生成抽象语法树（AST）</p>
+</li>
+<li>
+<p>标记为静态节点：在模板解析的过程中，编译器将模板中的静态内容标记为静态节点，并在渲染过程中跳过对其的更新操作。</p>
+</li>
+<li>
+<p>生成渲染函数：编译器将抽象语法树转换为渲染函数。渲染函数是一个render 函数，接收一个 h 函数作为参数</p>
+</li>
+<li>
+<p>生成虚拟DOM树：调用h函数生成VNode，然后渲染函数将VNode结合成虚拟DOM树(VDom)。</p>
+</li>
+<li>
+<p>生成真实DOM：将虚拟 DOM 树转换为真实 DOM 元素，并将其插入到页面中的特定位置 。</p>
+</li>
+<li>
+<p>数据更新：当组件的数据发生变化时，元素实例会重新调用渲染函数生成新的虚拟 DOM 树。</p>
+</li>
+<li>
+<p>更新真实 DOM：通过对diff算法比新旧虚拟 DOM 树的差异，找到需要更新的部分，并将这些变化应用到真实 DOM 上，从而实现局部的视图更新。
+这个过程通常发生在组件的 updated 钩子函数中。</p>
+</li>
 </ol>
+<h2 id="重点" tabindex="-1"><a class="header-anchor" href="#重点" aria-hidden="true">#</a> 重点</h2>
+<p>模板编译的最终目的是什么：</p>
+<p>把用户所写的模板转化成供Vue实例在挂载时可调用的render函数。或者你可以这样简单的理解为：模板编译就是一台机器，给它输入模板字符串，它就输出对应的render函数。</p>
 </div></template>
 
 

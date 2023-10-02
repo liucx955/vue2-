@@ -1,4 +1,4 @@
-export const data = JSON.parse("{\"key\":\"v-94a7bdaa\",\"path\":\"/v2/vnode/introduce.html\",\"title\":\"diff介绍\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[],\"git\":{\"updatedTime\":1696078831000,\"contributors\":[{\"name\":\"liuchenxing\",\"email\":\"2076434315@gmail.com\",\"commits\":1}]},\"filePathRelative\":\"v2/vnode/introduce.md\"}")
+export const data = JSON.parse("{\"key\":\"v-94a7bdaa\",\"path\":\"/v2/vnode/introduce.html\",\"title\":\"diff介绍\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[],\"git\":{\"updatedTime\":1696078831000,\"contributors\":[{\"name\":\"liuchenxing\",\"email\":\"2076434315@gmail.com\",\"commits\":1}]},\"filePathRelative\":\"v2/vnode/diff.md\"}")
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

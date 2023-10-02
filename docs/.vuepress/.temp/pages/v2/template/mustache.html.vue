@@ -1,4 +1,9 @@
-<template><div><h1 id="mustache模板引擎" tabindex="-1"><a class="header-anchor" href="#mustache模板引擎" aria-hidden="true">#</a> mustache模板引擎</h1>
+<template><div><h1 id="mustache模板引擎" tabindex="-1"><a class="header-anchor" href="#mustache模板引擎" aria-hidden="true">#</a> Mustache模板引擎</h1>
+<h2 id="为什么要学习mustache" tabindex="-1"><a class="header-anchor" href="#为什么要学习mustache" aria-hidden="true">#</a> 为什么要学习mustache</h2>
+<ul>
+<li>Mustache 是模板引擎思想的奠基者，Vue 中的模板引擎也借用了它的思想</li>
+<li>Mustache里面的tokens是“抽象语法树”、“虚拟节点”等的开山鼻祖</li>
+</ul>
 <h2 id="模板引擎是什么" tabindex="-1"><a class="header-anchor" href="#模板引擎是什么" aria-hidden="true">#</a> 模板引擎是什么</h2>
 <p>先做一个题目：</p>
 <p>将下面数组转化成多个li标签:</p>
@@ -61,8 +66,8 @@
     container<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> domStr
   </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="mustache如何运行" tabindex="-1"><a class="header-anchor" href="#mustache如何运行" aria-hidden="true">#</a> mustache如何运行</h2>
-<p>最简单的替换<code v-pre>{{ }}</code>里面的内容的方法</p>
 <h3 id="一个示例" tabindex="-1"><a class="header-anchor" href="#一个示例" aria-hidden="true">#</a> 一个示例</h3>
+<p>最简单的替换<code v-pre>{{ }}</code>里面的内容的方法</p>
 <div class="language-javascript line-numbers-mode" data-ext="js"><pre v-pre class="language-javascript"><code><span class="token keyword">const</span> reg <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\{\{(\w+)\}\}</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
     <span class="token literal-property property">thing</span><span class="token operator">:</span><span class="token string">"手机"</span><span class="token punctuation">,</span>
@@ -95,11 +100,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
 我们发现中间多出个 <span style="color:red;font-weight:bold;">tokens</span></p>
 <p>token是一个js的嵌套的数组，大概长这样：
 <img src="/images/mustache-tokens.png" alt="图片"></p>
-<h2 id="为什么要学习mustache" tabindex="-1"><a class="header-anchor" href="#为什么要学习mustache" aria-hidden="true">#</a> 为什么要学习mustache</h2>
-<ul>
-<li>Mustache 是模板引擎思想的奠基者，Vue 中的模板引擎也借用了它的思想</li>
-<li>Mustache里面的tokens是“抽象语法树”、“虚拟节点”等的开山鼻祖</li>
-</ul>
 </div></template>
 
 

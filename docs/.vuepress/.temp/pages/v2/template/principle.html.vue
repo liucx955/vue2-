@@ -1,5 +1,5 @@
 <template><div><h1 id="ast实现原理" tabindex="-1"><a class="header-anchor" href="#ast实现原理" aria-hidden="true">#</a> AST实现原理</h1>
-<h2 id="ast的思路" tabindex="-1"><a class="header-anchor" href="#ast的思路" aria-hidden="true">#</a> AST的思路</h2>
+<h2 id="实现ast的思路" tabindex="-1"><a class="header-anchor" href="#实现ast的思路" aria-hidden="true">#</a> 实现AST的思路</h2>
 <ul>
 <li>使用正则表达式来判断开始标签、结束标签、文字内容</li>
 <li>使用指针来决定什么时候循环结束，每次处理完标签或一个文本后，指针就往后跳</li>
