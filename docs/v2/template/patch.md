@@ -1,7 +1,7 @@
 
 # patch函数和精细化比较
 ## patch函数是什么
-* 在vue中，patch函数是一个将虚拟DOM转化为真实DOM的主函数，也是diff算法的主体函数
+* 在vue中，patch函数是一个将虚拟DOM转化为真实DOM的函数，也是diff算法的主体函数
 * 它可以接收四个参数，主要还是前两个
     * oldVnode：老的虚拟 DOM 节点
     * vnode：新的虚拟 DOM 节点
@@ -175,7 +175,15 @@ function sameVnode (a, b) {
 
 比如现在有两个子节点列表对比，对比主要流程如下：
 
-循环遍历两个列表，循环停止条件是：其中一个列表的开始指针 startIdx 和 结束指针 endIdx 重合
+1. 定义四个指针
+* oldStartIdx
+* oldEndIdx
+* newStartIdx
+* newEndIdx
+
+![updateChildren](/images/updateChildren.png)
+
+2. 循环遍历比较列表：
 
 循环内容是：
 
@@ -183,3 +191,11 @@ function sameVnode (a, b) {
 * 新后 对 旧后 
 * 新后 对 旧前 
 * 新前 对 旧后
+
+每次比较，如果有一种情况相等，则则新旧的指针都移动一位
+
+![updateChildren](/images/updateChildren.gif)
+> 点击下载演示文稿：[updateChildren.pptx](/images/updateChildren.pptx)
+
+循环停止条件是：其中一个列表的开始指针 startIdx 和 结束指针 endIdx 重合
+

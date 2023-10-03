@@ -31,7 +31,7 @@ export default defaultTheme({
     "/v2/template/": [
       {
         // collapsible:true,
-        text: "模板编译",
+        text: "模板和渲染",
         children: [ "flow", "ast", "hfunction","vnode","patch","mustache"],
       },
     ],

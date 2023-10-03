@@ -1,7 +1,7 @@
 <template><div><h1 id="patch函数和精细化比较" tabindex="-1"><a class="header-anchor" href="#patch函数和精细化比较" aria-hidden="true">#</a> patch函数和精细化比较</h1>
 <h2 id="patch函数是什么" tabindex="-1"><a class="header-anchor" href="#patch函数是什么" aria-hidden="true">#</a> patch函数是什么</h2>
 <ul>
-<li>在vue中，patch函数是一个将虚拟DOM转化为真实DOM的主函数，也是diff算法的主体函数</li>
+<li>在vue中，patch函数是一个将虚拟DOM转化为真实DOM的函数，也是diff算法的主体函数</li>
 <li>它可以接收四个参数，主要还是前两个
 <ul>
 <li>oldVnode：老的虚拟 DOM 节点</li>
@@ -170,7 +170,19 @@
 <h2 id="子节点不一样怎么办" tabindex="-1"><a class="header-anchor" href="#子节点不一样怎么办" aria-hidden="true">#</a> 子节点不一样怎么办</h2>
 <p>如果 vnode 和 oldVnode 都有子节点，且子节点不一样的时候，调用 updateChildren 函数进行子节点对比。</p>
 <p>比如现在有两个子节点列表对比，对比主要流程如下：</p>
-<p>循环遍历两个列表，循环停止条件是：其中一个列表的开始指针 startIdx 和 结束指针 endIdx 重合</p>
+<ol>
+<li>定义四个指针</li>
+</ol>
+<ul>
+<li>oldStartIdx</li>
+<li>oldEndIdx</li>
+<li>newStartIdx</li>
+<li>newEndIdx</li>
+</ul>
+<p><img src="/images/updateChildren.png" alt="updateChildren"></p>
+<ol start="2">
+<li>循环遍历比较列表：</li>
+</ol>
 <p>循环内容是：</p>
 <ul>
 <li>新前 对 旧前</li>
@@ -178,6 +190,12 @@
 <li>新后 对 旧前</li>
 <li>新前 对 旧后</li>
 </ul>
+<p>每次比较，如果有一种情况相等，则则新旧的指针都移动一位</p>
+<p><img src="/images/updateChildren.gif" alt="updateChildren"></p>
+<blockquote>
+<p>点击下载演示文稿：<a href="/images/updateChildren.pptx">updateChildren.pptx</a></p>
+</blockquote>
+<p>循环停止条件是：其中一个列表的开始指针 startIdx 和 结束指针 endIdx 重合</p>
 </div></template>
 
 
