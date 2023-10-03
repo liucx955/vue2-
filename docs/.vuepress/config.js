@@ -14,8 +14,8 @@ export default defaultTheme({
         { text: "AST", link: "/v2/template/ast" },
         { text: "h函数", link: "/v2/template/hfunction" },
         { text: "虚拟DOM和diff", link: "/v2/template/vnode" },
+        { text: "patch函数", link: "/v2/template/patch" },
         { text: "Mustache模板引擎", link: "/v2/template/mustache" },
-        { text: "Snabbdom", link: "/v2/template/snabbdom" },
       ],
     },
     {
@@ -32,7 +32,7 @@ export default defaultTheme({
       {
         // collapsible:true,
         text: "模板编译",
-        children: [ "flow", "ast", "hfunction","vnode","mustache","snabbdom"],
+        children: [ "flow", "ast", "hfunction","vnode","patch","mustache"],
       },
     ],
     "/v2/reactive/": [

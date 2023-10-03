@@ -9,6 +9,8 @@ export const pagesData = {
   "v-7328a1f4": () => import(/* webpackChunkName: "v-7328a1f4" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/template/hfunction.html.js").then(({ data }) => data),
   // path: /v2/template/mustache.html
   "v-60013ef6": () => import(/* webpackChunkName: "v-60013ef6" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/template/mustache.html.js").then(({ data }) => data),
+  // path: /v2/template/patch.html
+  "v-2947386c": () => import(/* webpackChunkName: "v-2947386c" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/template/patch.html.js").then(({ data }) => data),
   // path: /v2/template/vnode.html
   "v-da495988": () => import(/* webpackChunkName: "v-da495988" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/template/vnode.html.js").then(({ data }) => data),
   // path: /v2/reactive/defineProperty.html

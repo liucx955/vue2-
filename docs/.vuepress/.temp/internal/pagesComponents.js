@@ -11,6 +11,8 @@ export const pagesComponents = {
   "v-7328a1f4": defineAsyncComponent(() => import(/* webpackChunkName: "v-7328a1f4" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/template/hfunction.html.vue")),
   // path: /v2/template/mustache.html
   "v-60013ef6": defineAsyncComponent(() => import(/* webpackChunkName: "v-60013ef6" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/template/mustache.html.vue")),
+  // path: /v2/template/patch.html
+  "v-2947386c": defineAsyncComponent(() => import(/* webpackChunkName: "v-2947386c" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/template/patch.html.vue")),
   // path: /v2/template/vnode.html
   "v-da495988": defineAsyncComponent(() => import(/* webpackChunkName: "v-da495988" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/template/vnode.html.vue")),
   // path: /v2/reactive/defineProperty.html

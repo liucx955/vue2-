@@ -100,6 +100,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
 我们发现中间多出个 <span style="color:red;font-weight:bold;">tokens</span></p>
 <p>token是一个js的嵌套的数组，大概长这样：
 <img src="/images/mustache-tokens.png" alt="图片"></p>
+<h2 id="mustache的不足" tabindex="-1"><a class="header-anchor" href="#mustache的不足" aria-hidden="true">#</a> mustache的不足</h2>
+<p>mustache没有虚拟 DOM 和 diff 算法。它的主要功能是帮助开发者更方便地生成 HTML，而不是进行虚拟 DOM 的操作和 diff 算法的优化。数据发生变化时，它需要重新渲染整个模板。</p>
 </div></template>
 
 

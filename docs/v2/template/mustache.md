@@ -108,3 +108,6 @@ mustache库的机理大概是这样：
 token是一个js的嵌套的数组，大概长这样：
 ![图片](/images/mustache-tokens.png)
 
+## mustache的不足
+mustache没有虚拟 DOM 和 diff 算法。它的主要功能是帮助开发者更方便地生成 HTML，而不是进行虚拟 DOM 的操作和 diff 算法的优化。数据发生变化时，它需要重新渲染整个模板。
+
