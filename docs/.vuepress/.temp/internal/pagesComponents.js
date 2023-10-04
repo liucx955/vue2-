@@ -3,6 +3,10 @@ import { defineAsyncComponent } from 'vue'
 export const pagesComponents = {
   // path: /
   "v-8daa1a0e": defineAsyncComponent(() => import(/* webpackChunkName: "v-8daa1a0e" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/index.html.vue")),
+  // path: /v2/algorithm/dichotomy.html
+  "v-01583ea7": defineAsyncComponent(() => import(/* webpackChunkName: "v-01583ea7" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/algorithm/dichotomy.html.vue")),
+  // path: /v2/algorithm/subsequence.html
+  "v-57d49032": defineAsyncComponent(() => import(/* webpackChunkName: "v-57d49032" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/algorithm/subsequence.html.vue")),
   // path: /v2/reactive/defineProperty.html
   "v-10f8b2ad": defineAsyncComponent(() => import(/* webpackChunkName: "v-10f8b2ad" */"C:/Users/LCX/Desktop/vue2-base/docs/.vuepress/.temp/pages/v2/reactive/defineProperty.html.vue")),
   // path: /v2/reactive/defineReactive.html

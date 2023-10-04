@@ -1,5 +1,7 @@
 export const pagesRoutes = [
   ["v-8daa1a0e","/",{"title":""},["/README.md"]],
+  ["v-01583ea7","/v2/algorithm/dichotomy.html",{"title":"二分查找"},[":md"]],
+  ["v-57d49032","/v2/algorithm/subsequence.html",{"title":"最长递增子序列"},[":md"]],
   ["v-10f8b2ad","/v2/reactive/defineProperty.html",{"title":"defineProperty"},[":md"]],
   ["v-4e804c09","/v2/reactive/defineReactive.html",{"title":"defineReactive函数"},[":md"]],
   ["v-b7800592","/v2/reactive/newvue.html",{"title":"new Vue()发生了什么"},[":md"]],

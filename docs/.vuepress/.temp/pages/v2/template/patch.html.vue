@@ -167,8 +167,7 @@
 </li>
 <li>如果 vnode 是文本节点但是和 oldVnode 文本内容不一样，就更新文本</li>
 </ol>
-<h2 id="子节点不一样怎么办" tabindex="-1"><a class="header-anchor" href="#子节点不一样怎么办" aria-hidden="true">#</a> 子节点不一样怎么办</h2>
-<p>如果 vnode 和 oldVnode 都有子节点，且子节点不一样的时候，调用 updateChildren 函数进行子节点对比。</p>
+<h2 id="updatechildren" tabindex="-1"><a class="header-anchor" href="#updatechildren" aria-hidden="true">#</a> updateChildren</h2>
 <p>比如现在有两个子节点列表对比，对比主要流程如下：</p>
 <ol>
 <li>定义四个指针</li>
@@ -181,21 +180,61 @@
 </ul>
 <p><img src="/images/updateChildren.png" alt="updateChildren"></p>
 <ol start="2">
-<li>循环遍历比较列表：</li>
+<li>if...else if...else if比较列表：</li>
 </ol>
-<p>循环内容是：</p>
+<p>分支是：</p>
 <ul>
 <li>新前 对 旧前</li>
 <li>新后 对 旧后</li>
 <li>新后 对 旧前</li>
 <li>新前 对 旧后</li>
 </ul>
-<p>每次比较，如果有一种情况相等，则则新旧的指针都移动一位</p>
+<p>每次循环比较，如果有一种情况相等(sameVnode)，则新旧的指针都移动一位</p>
 <p><img src="/images/updateChildren.gif" alt="updateChildren"></p>
 <blockquote>
 <p>点击下载演示文稿：<a href="/images/updateChildren.pptx">updateChildren.pptx</a></p>
 </blockquote>
 <p>循环停止条件是：其中一个列表的开始指针 startIdx 和 结束指针 endIdx 重合</p>
+<ol start="3">
+<li>如果一轮比较下来，没有一个相同的怎么办？
+不断拿新的开始节点的 key 去所有的老节点列表里面对比有没有相同的：</li>
+</ol>
+<blockquote>
+<ol>
+<li>如果没找到，就创建一个新的节点</li>
+<li>如果找到了，再对比标签判断是不是同一个节点
+<ol>
+<li>如果是同一个节点，就调用 patchVnode 进行后续对比，然后把这个节点插入到老的开始前面，并且移动新的开始下标，继续下一轮循环对比</li>
+<li>如果不是相同节点，就创建一个新的节点</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h2 id="key在diff中的作用" tabindex="-1"><a class="header-anchor" href="#key在diff中的作用" aria-hidden="true">#</a> key在diff中的作用</h2>
+<p>xxxxxxxxxxxxx</p>
+<h2 id="vue3对diff的优化" tabindex="-1"><a class="header-anchor" href="#vue3对diff的优化" aria-hidden="true">#</a> vue3对diff的优化</h2>
+<ol>
+<li>事件缓存：将事件缓存，每次调用事件时，会先读缓存</li>
+<li>添加静态标记：Vue2 是全量 Diff，Vue3 是静态标记 + 非全量 Diff</li>
+<li>使用最长递增子序列优化了对比流程：</li>
+</ol>
+<p>在 Vue2 里 updateChildren 会进行</p>
+<ul>
+<li>头和头比</li>
+<li>尾和尾比</li>
+<li>头和尾比</li>
+<li>尾和头比</li>
+<li>都没有命中的对比</li>
+</ul>
+<p>在 Vue3 里 patchKeyedChildren 为</p>
+<ul>
+<li>头和头比</li>
+<li>尾和尾比</li>
+<li>基于<strong>最长递增子序列</strong>进行移动/添加/删除</li>
+</ul>
+<blockquote>
+<p>点击跳转：<a href="/v2/algorithm/subsequence">算法/最长递增子序列</a></p>
+</blockquote>
 </div></template>
 
 

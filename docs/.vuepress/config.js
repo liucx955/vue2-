@@ -26,6 +26,14 @@ export default defaultTheme({
         { text: "new Vue()", link: "/v2/reactive/newvue" },
       ],
     },
+    {
+      text: "算法",
+      children: [
+        { text: "最长递增子序列", link: "/v2/algorithm/subsequence" },
+        { text: "二分查找", link: "/v2/algorithm/dichotomy" },
+
+      ],
+    },
   ],
   sidebar: {
     "/v2/template/": [
@@ -40,6 +48,13 @@ export default defaultTheme({
         // collapsible:true,
         text: "响应式原理",
         children: ["defineProperty", "defineReactive","newvue"],
+      },
+    ],
+    "/v2/algorithm/": [
+      {
+        // collapsible:true,
+        text: "算法",
+        children: ["subsequence","dichotomy"],
       },
     ],
   },
