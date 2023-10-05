@@ -134,7 +134,7 @@ console.log(res); // [1, 9, 5, 6, 7, 8]
 
 ### 3. 回溯修正
 要想得到正确的序列，首先要对上面的代码做一些改动
-* 增加chain变量，存放每一位在被加入到result时其对应的前一位的下标值，进行关系绑定
+* 增加chain变量，存放每一位在被加入到result时其对应的前一位的下标值（前驱索引），进行关系绑定
 * 回溯chain，覆盖result的值。因为result内，最后一位一定是正确的，所以可以从后往前进行修正
 
 chain的作用：
@@ -193,22 +193,28 @@ chain的作用：
           }
         }
 
+        console.log("result纠正前", result); // [1, 9, 5, 6, 7, 8]
+        // 要纠正的次数
         let i = result.length;
-        let last = result[i - 1];
+        // 要纠正的元素
+        let last = result.slice(-1)[0];
 
         // 回溯修正
-        while (i-- > 0) {
-          result[i] = last;
-          last = chain[last];
+        while (i > 0) {
+            i--;
+            result[i] = last;
+            last = chain[last];
         }
+        
+        // result纠正后    
         return result;
       }
       const data = [3, 2, 8, 9, 5, 6, 7, 11, 15, 4];
       const res = getSequence(data);
       console.log(res); // [1, 4, 5, 6, 7, 8]
 ```
-
-
+图示：
+![前驱索引](/images/chain.png)
 
 
 

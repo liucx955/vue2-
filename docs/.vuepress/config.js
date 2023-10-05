@@ -21,9 +21,10 @@ export default defaultTheme({
     {
       text: "响应式原理",
       children: [
-        { text: "defineProperty", link: "/v2/reactive/defineProperty" },
-        { text: "defineReactive函数", link: "/v2/reactive/defineReactive" },
+        { text: "准备", link: "/v2/reactive/prepare" },
         { text: "new Vue()", link: "/v2/reactive/newvue" },
+        { text: "initData", link: "/v2/reactive/initData" },
+        { text: "defineReactive", link: "/v2/reactive/defineReactive" },
       ],
     },
     {
@@ -31,7 +32,6 @@ export default defaultTheme({
       children: [
         { text: "最长递增子序列", link: "/v2/algorithm/subsequence" },
         { text: "二分查找", link: "/v2/algorithm/dichotomy" },
-
       ],
     },
   ],
@@ -40,23 +40,22 @@ export default defaultTheme({
       {
         // collapsible:true,
         text: "模板和渲染",
-        children: [ "flow", "ast", "hfunction","vnode","patch","mustache"],
+        children: ["flow", "ast", "hfunction", "vnode", "patch", "mustache"],
       },
     ],
     "/v2/reactive/": [
       {
         // collapsible:true,
         text: "响应式原理",
-        children: ["defineProperty", "defineReactive","newvue"],
+        children: ["prepare", "newvue", "initData", "defineReactive"],
       },
     ],
     "/v2/algorithm/": [
       {
         // collapsible:true,
         text: "算法",
-        children: ["subsequence","dichotomy"],
+        children: ["subsequence", "dichotomy"],
       },
     ],
   },
-
 });

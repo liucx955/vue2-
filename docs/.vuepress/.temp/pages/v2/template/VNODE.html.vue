@@ -39,7 +39,7 @@
 </blockquote>
 <p>在页面首次渲染的时候会调用一次 patch 并创建新的 vnode，不会进行更深层次的比较
 然后是在组件中数据发生变化时，会触发 setter 然后通过 Notify 通知 Watcher，对应的 Watcher 会通知更新并执行更新函数，它会执行 render 函数获取新的虚拟 DOM，然后执行 patch 对比上次渲染结果的老的虚拟 DOM，并计算出最小的变化，然后再去根据这个最小的变化去更新真实的 DOM，也就是视图。</p>
-<h2 id="diff算法的优化" tabindex="-1"><a class="header-anchor" href="#diff算法的优化" aria-hidden="true">#</a> diff算法的优化</h2>
+<h2 id="最小量更新" tabindex="-1"><a class="header-anchor" href="#最小量更新" aria-hidden="true">#</a> 最小量更新</h2>
 <p>按照最直接的思维，比较新旧两个虚拟DOM，那么就应该分别递归遍历两个节点，进行比较，可是这样的效率很低。</p>
 <p>为了优化diff算法，实现最小量更新，做了一些策略上的优化：</p>
 <ol>
