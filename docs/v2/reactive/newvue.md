@@ -179,8 +179,7 @@ export function initProvide (vm) {
 
 很简单，给`vue`实例添加了一个`_provided`属性，用来存放`provide`对象。
 
-### 7. 初始化状态
-
+### 7. initState
 `initState`里面就包含着`vue`的核心，数据观察：
 
 ```js

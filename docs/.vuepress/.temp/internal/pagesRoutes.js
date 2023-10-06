@@ -1,5 +1,6 @@
 export const pagesRoutes = [
   ["v-8daa1a0e","/",{"title":""},["/README.md"]],
+  ["v-11fb1c00","/v2/lifecycle/merge.html",{"title":"生命周期"},[":md"]],
   ["v-01583ea7","/v2/algorithm/dichotomy.html",{"title":"二分查找"},[":md"]],
   ["v-57d49032","/v2/algorithm/subsequence.html",{"title":"最长递增子序列"},[":md"]],
   ["v-fc5ba59c","/v2/template/ast.html",{"title":"AST的介绍"},[":md"]],
@@ -8,10 +9,14 @@ export const pagesRoutes = [
   ["v-60013ef6","/v2/template/mustache.html",{"title":"Mustache模板引擎"},[":md"]],
   ["v-2947386c","/v2/template/patch.html",{"title":"patch函数和精细化比较"},[":md"]],
   ["v-da495988","/v2/template/vnode.html",{"title":"虚拟DOM&diff"},[":md"]],
+  ["v-48896df0","/v2/reactive/def.html",{"title":"def工具函数"},[":md"]],
   ["v-4e804c09","/v2/reactive/defineReactive.html",{"title":"defineReactive"},[":md"]],
   ["v-eb4f407a","/v2/reactive/initData.html",{"title":"initData"},[":md"]],
   ["v-b7800592","/v2/reactive/newvue.html",{"title":"new Vue()发生了什么"},[":md"]],
+  ["v-8fb3f1a6","/v2/reactive/nextTick.html",{"title":"nextTick"},[":md"]],
   ["v-6e8e4fa4","/v2/reactive/prepare.html",{"title":"调试前的准备"},[":md"]],
   ["v-516e3227","/v2/reactive/proxy.html",{"title":"proxy"},[":md"]],
+  ["v-7d24e5de","/v2/reactive/relative.html",{"title":"Dep、Watcher、Observer"},[":md"]],
+  ["v-769ee7b3","/v2/reactive/set.html",{"title":"$set"},[":md"]],
   ["v-3706649a","/404.html",{"title":""},[]],
 ]

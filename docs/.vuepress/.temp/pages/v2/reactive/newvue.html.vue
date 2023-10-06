@@ -119,7 +119,7 @@ Vue<span class="token punctuation">.</span>nextTick <span class="token operator"
 <span class="token punctuation">}</span>
 
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>很简单，给<code v-pre>vue</code>实例添加了一个<code v-pre>_provided</code>属性，用来存放<code v-pre>provide</code>对象。</p>
-<h3 id="_7-初始化状态" tabindex="-1"><a class="header-anchor" href="#_7-初始化状态" aria-hidden="true">#</a> 7. 初始化状态</h3>
+<h3 id="_7-initstate" tabindex="-1"><a class="header-anchor" href="#_7-initstate" aria-hidden="true">#</a> 7. initState</h3>
 <p><code v-pre>initState</code>里面就包含着<code v-pre>vue</code>的核心，数据观察：</p>
 <div class="language-javascript line-numbers-mode" data-ext="js"><pre v-pre class="language-javascript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">initState</span><span class="token punctuation">(</span><span class="token parameter">vm</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   vm<span class="token punctuation">.</span>_watchers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token comment">// 声明了一个存放watcher的数组</span>

@@ -1,17 +1,10 @@
 # defineReactive
 * defineReactive 函数，它是一个非常重要的函数，它的作用是在一个对象上定义一个响应式的属性
-
 ```js
 /**
  * Define a reactive property on an Object.
  */
-export function defineReactive (
-  obj: Object,
-  key: string,
-  val: any,
-  customSetter?: ?Function,
-  shallow?: boolean
-) {
+export function defineReactive (obj, key, val, customSetter,shallow) {
   // 实例化 Dep 对象，主要存储对该属性的依赖，Dep 类后面详细研究
   const dep = new Dep() 
 
@@ -80,58 +73,7 @@ export function defineReactive (
 1. defineReactive先创建了一个Dep实例
 2. 递归调用`observe`进行深度劫持（即重复`observe -> new Observer -> defineReactive`这几步
 3. 然后给`data`数据添加`getter`和`setter`对数据进行劫持
-4. `getter`里面使用 `dep.depend()` 方法做依赖收集
-5. `setter`里面先判断数据有没有变化，没有变化直接return退出，否则使用 `dep.notify()`方法通知依赖者更新数据
+4. `getter`里面使用 `dep.depend()`方法做依赖收集
+5. `setter`里面先判断数据有没有变化，没有变化直接return退出，否则使用`dep.notify()`方法通知依赖者更新数据
 
-## Dep
-```js
-var Dep = /** @class */ (function () {
-    function Dep() {
-        // pending subs cleanup
-        this._pending = false;
-        this.id = uid$2++;
-        this.subs = [];
-    }
-    Dep.prototype.addSub = function (sub) {
-        this.subs.push(sub);
-    };
-    Dep.prototype.removeSub = function (sub) {
-        // #12696 deps with massive amount of subscribers are extremely slow to
-        // clean up in Chromium
-        // to workaround this, we unset the sub for now, and clear them on
-        // next scheduler flush.
-        this.subs[this.subs.indexOf(sub)] = null;
-        if (!this._pending) {
-            this._pending = true;
-            pendingCleanupDeps.push(this);
-        }
-    };
-    Dep.prototype.depend = function (info) {
-        if (Dep.target) {
-            Dep.target.addDep(this);
-            if (process.env.NODE_ENV !== 'production' && info && Dep.target.onTrack) {
-                Dep.target.onTrack(__assign({ effect: Dep.target }, info));
-            }
-        }
-    };
-    Dep.prototype.notify = function (info) {
-        // stabilize the subscriber list first
-        var subs = this.subs.filter(function (s) { return s; });
-        if (process.env.NODE_ENV !== 'production' && !config.async) {
-            // subs aren't sorted in scheduler if not running async
-            // we need to sort them now to make sure they fire in correct
-            // order
-            subs.sort(function (a, b) { return a.id - b.id; });
-        }
-        for (var i = 0, l = subs.length; i < l; i++) {
-            var sub = subs[i];
-            if (process.env.NODE_ENV !== 'production' && info) {
-                sub.onTrigger &&
-                    sub.onTrigger(__assign({ effect: subs[i] }, info));
-            }
-            sub.update();
-        }
-    };
-    return Dep;
-}());
-```
+> 点击跳转：[Dep、Watcher、Observer](/v2/reactive/relative)

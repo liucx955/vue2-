@@ -139,22 +139,72 @@
 <p>点击跳转：<a href="/v2/reactive/defineReactive">defineReactive</a></p>
 </blockquote>
 <h3 id="_2-是数组" tabindex="-1"><a class="header-anchor" href="#_2-是数组" aria-hidden="true">#</a> 2.是数组</h3>
-<p>如果<code v-pre>isArray</code>判断出来 data 是数组，会采用函数劫持和切片思想</p>
-<!-- ## 响应式的原理
-
-initState会调用initData,initData会调用proxy、defineReactive、def
-
-Vue初始化时会调用initData()方法，方法内部会调用observe()方法对数据进行观测，observe()方法先判断data是否为对象，如果不是对象不进行观测。再判断是否已经被观测，没有被观测的话会new 一个Observer去观测对象。观测时又分为两种，对象的观测和数组的观测。
-
-**如果观测的是对象:**
-
-就会遍历所有对象并调用defineReactive方法，defineReactive方法会判断如果观测的值还是一个对象，会重新调用observe方法进行递归观测，然后使用object.definedProperty方法给属性添加get/set方法给属性定义响应式，如果数据被获取时，就会调用get方法，如果get方法被调用，就会收集点前的watcher，如果数据发生变化，就会调用set方法，判断数据是否和元数据一致，如果不一致就会调用notify方法就会通知视图更新。
-
-**如果观测的是数组:**
-
-就会调用protoAugment将原型链指向我们新定义的方法，当我们调用这些方法时，方法内部还是会调用原有的方法，但是会在最后会手动通知视图更新。操作个别的可能会新增数组的方法时，如果有新增的数据就会调用observeArray方法对数据进行观测，因为新增的数据也可能是对象，原理和对象相同。
-
-流程： -->
+<p>在vue2的源码里面，很早就重写（或者说拦截）了数组的7个方法</p>
+<div class="language-javascript line-numbers-mode" data-ext="js"><pre v-pre class="language-javascript"><code><span class="token keyword">var</span> arrayProto <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
+<span class="token keyword">var</span> arrayMethods <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>arrayProto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> methodsToPatch <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'push'</span><span class="token punctuation">,</span>
+    <span class="token string">'pop'</span><span class="token punctuation">,</span>
+    <span class="token string">'shift'</span><span class="token punctuation">,</span>
+    <span class="token string">'unshift'</span><span class="token punctuation">,</span>
+    <span class="token string">'splice'</span><span class="token punctuation">,</span>
+    <span class="token string">'sort'</span><span class="token punctuation">,</span>
+    <span class="token string">'reverse'</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token doc-comment comment">/**
+ * Intercept mutating methods and emit events
+ */</span>
+methodsToPatch<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">method</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// cache original method</span>
+    <span class="token keyword">var</span> original <span class="token operator">=</span> arrayProto<span class="token punctuation">[</span>method<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">def</span><span class="token punctuation">(</span>arrayMethods<span class="token punctuation">,</span> method<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token function">mutator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> args <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> _i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> _i <span class="token operator">&lt;</span> arguments<span class="token punctuation">.</span>length<span class="token punctuation">;</span> _i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            args<span class="token punctuation">[</span>_i<span class="token punctuation">]</span> <span class="token operator">=</span> arguments<span class="token punctuation">[</span>_i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token function">original</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> ob <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>__ob__<span class="token punctuation">;</span>
+        <span class="token keyword">var</span> inserted<span class="token punctuation">;</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>method<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> <span class="token string">'push'</span><span class="token operator">:</span>
+            <span class="token keyword">case</span> <span class="token string">'unshift'</span><span class="token operator">:</span>
+                inserted <span class="token operator">=</span> args<span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> <span class="token string">'splice'</span><span class="token operator">:</span>
+                inserted <span class="token operator">=</span> args<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>inserted<span class="token punctuation">)</span>
+            ob<span class="token punctuation">.</span><span class="token function">observeArray</span><span class="token punctuation">(</span>inserted<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// notify change</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">!==</span> <span class="token string">'production'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            ob<span class="token punctuation">.</span>dep<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"array mutation"</span> <span class="token comment">/* TriggerOpTypes.ARRAY_MUTATION */</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">target</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">,</span>
+                <span class="token literal-property property">key</span><span class="token operator">:</span> method
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            ob<span class="token punctuation">.</span>dep<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>步骤如下：</p>
+<ol>
+<li>定义一个变量 arrayProto，存放 Array 的原型</li>
+<li>定义一个变量 arrayMethods，通过 Object.create方法，继承 arrayProto</li>
+<li>当我们读取arrayMethods上面的那7个方法时，会被劫持，劫持后它就做了3件事情：
+<ol>
+<li>仍然调用原来的数组方法</li>
+<li><code v-pre>dep.depend()</code>方法做依赖收集</li>
+<li><code v-pre>dep.notify()</code>方法派发更新</li>
+</ol>
+</li>
+</ol>
+<p>所以：<strong>如果<code v-pre>isArray</code>判断出来 data 是数组</strong>，他不会去递归劫持数组的元素，因为特别耗费性能，而是把<code v-pre>arrayMethods</code> 添加到数组的 <code v-pre>__proto__</code> 上面，这样使用这些方法时，会收集依赖和派发更新;</p>
+<p>也就是：</p>
+<p><strong>对数组，她不会劫持每一个元素，只是劫持数组的7个可变方法（函数劫持）。</strong></p>
 <p><img src="/images/initData.png" alt="initData"></p>
 </div></template>
 

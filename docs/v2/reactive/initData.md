@@ -140,22 +140,74 @@ function initData (vm: Component) {
 > 点击跳转：[defineReactive](/v2/reactive/defineReactive)
 
 ### 2.是数组
-如果`isArray`判断出来 data 是数组，会采用函数劫持和切片思想
+在vue2的源码里面，很早就重写（或者说拦截）了数组的7个方法
 
-<!-- ## 响应式的原理
+```js
+var arrayProto = Array.prototype;
+var arrayMethods = Object.create(arrayProto);
+var methodsToPatch = [
+    'push',
+    'pop',
+    'shift',
+    'unshift',
+    'splice',
+    'sort',
+    'reverse'
+];
+/**
+ * Intercept mutating methods and emit events
+ */
+methodsToPatch.forEach(function (method) {
+    // cache original method
+    var original = arrayProto[method];
+    def(arrayMethods, method, function mutator() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var result = original.apply(this, args);
+        var ob = this.__ob__;
+        var inserted;
+        switch (method) {
+            case 'push':
+            case 'unshift':
+                inserted = args;
+                break;
+            case 'splice':
+                inserted = args.slice(2);
+                break;
+        }
+        if (inserted)
+            ob.observeArray(inserted);
+        // notify change
+        if (process.env.NODE_ENV !== 'production') {
+            ob.dep.notify({
+                type: "array mutation" /* TriggerOpTypes.ARRAY_MUTATION */,
+                target: this,
+                key: method
+            });
+        }
+        else {
+            ob.dep.notify();
+        }
+        return result;
+    });
+});
+```
 
-initState会调用initData,initData会调用proxy、defineReactive、def
+步骤如下：
+1. 定义一个变量 arrayProto，存放 Array 的原型
+2. 定义一个变量 arrayMethods，通过 Object.create方法，继承 arrayProto
+3. 当我们读取arrayMethods上面的那7个方法时，会被劫持，劫持后它就做了3件事情：
+   1. 仍然调用原来的数组方法
+   2. `dep.depend()`方法做依赖收集
+   3. `dep.notify()`方法派发更新
 
-Vue初始化时会调用initData()方法，方法内部会调用observe()方法对数据进行观测，observe()方法先判断data是否为对象，如果不是对象不进行观测。再判断是否已经被观测，没有被观测的话会new 一个Observer去观测对象。观测时又分为两种，对象的观测和数组的观测。
+所以：**如果`isArray`判断出来 data 是数组**，他不会去递归劫持数组的元素，因为特别耗费性能，而是把`arrayMethods` 添加到数组的 `__proto__` 上面，这样使用这些方法时，会收集依赖和派发更新;
 
-**如果观测的是对象:**
+也就是：
 
-就会遍历所有对象并调用defineReactive方法，defineReactive方法会判断如果观测的值还是一个对象，会重新调用observe方法进行递归观测，然后使用object.definedProperty方法给属性添加get/set方法给属性定义响应式，如果数据被获取时，就会调用get方法，如果get方法被调用，就会收集点前的watcher，如果数据发生变化，就会调用set方法，判断数据是否和元数据一致，如果不一致就会调用notify方法就会通知视图更新。
+**对数组，她不会劫持每一个元素，只是劫持数组的7个可变方法（函数劫持）。**
 
-**如果观测的是数组:**
-
-就会调用protoAugment将原型链指向我们新定义的方法，当我们调用这些方法时，方法内部还是会调用原有的方法，但是会在最后会手动通知视图更新。操作个别的可能会新增数组的方法时，如果有新增的数据就会调用observeArray方法对数据进行观测，因为新增的数据也可能是对象，原理和对象相同。
-
-流程： -->
 
 ![initData](/images/initData.png)

@@ -22,10 +22,17 @@ export default defaultTheme({
       text: "响应式原理",
       children: [
         { text: "准备", link: "/v2/reactive/prepare" },
+        { text: "Dep、Watcher、Observer", link: "/v2/reactive/relative" },
         { text: "new Vue()", link: "/v2/reactive/newvue" },
         { text: "initData", link: "/v2/reactive/initData" },
         { text: "defineReactive", link: "/v2/reactive/defineReactive" },
+        { text: "$set", link: "/v2/reactive/set" },
+        { text: "nextTick", link: "/v2/reactive/nextTick" },
       ],
+    },
+    {
+      text: "生命周期",
+      children: [{ text: "表现和原理", link: "/v2/lifecycle/merge" }],
     },
     {
       text: "算法",
@@ -47,7 +54,22 @@ export default defaultTheme({
       {
         // collapsible:true,
         text: "响应式原理",
-        children: ["prepare", "newvue", "initData", "defineReactive"],
+        children: [
+          "prepare",
+          "relative",
+          "newvue",
+          "initData",
+          "defineReactive",
+          "set",
+          "nextTick",
+        ],
+      },
+    ],
+    "/v2/lifecycle/": [
+      {
+        // collapsible:true,
+        text: "生命周期",
+        children: ["merge"],
       },
     ],
     "/v2/algorithm/": [
