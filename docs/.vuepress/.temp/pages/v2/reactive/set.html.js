@@ -1,4 +1,4 @@
-export const data = JSON.parse("{\"key\":\"v-769ee7b3\",\"path\":\"/v2/reactive/set.html\",\"title\":\"$set\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":3,\"title\":\"如果target是数组\",\"slug\":\"如果target是数组\",\"link\":\"#如果target是数组\",\"children\":[]},{\"level\":3,\"title\":\"如果target是对象\",\"slug\":\"如果target是对象\",\"link\":\"#如果target是对象\",\"children\":[]}],\"git\":{\"updatedTime\":null,\"contributors\":[]},\"filePathRelative\":\"v2/reactive/set.md\"}")
+export const data = JSON.parse("{\"key\":\"v-769ee7b3\",\"path\":\"/v2/reactive/set.html\",\"title\":\"$set\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":3,\"title\":\"如果target是数组\",\"slug\":\"如果target是数组\",\"link\":\"#如果target是数组\",\"children\":[]},{\"level\":3,\"title\":\"如果target是对象\",\"slug\":\"如果target是对象\",\"link\":\"#如果target是对象\",\"children\":[]}],\"git\":{\"updatedTime\":1696596616000,\"contributors\":[{\"name\":\"liuchenxing\",\"email\":\"2076434315@gmail.com\",\"commits\":1}]},\"filePathRelative\":\"v2/reactive/set.md\"}")
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

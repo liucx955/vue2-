@@ -62,6 +62,7 @@ var Dep = /** @class */ (function () {
   * user属性为true的，是userWatcher
   * 其他的，都是renderWatcher
 
+
 ```js
 // 初始化元素
 export function mountComponent(vm, el) {
@@ -141,7 +142,7 @@ var Watcher =  (function () {
 
 我们是如何触发依赖收集的呢？
 
-在执行this.getter()回调时，我们会调用vm._render() ，在_s()方法中会去 vm 上取值，这时我们劫持到数据访问走到 getter，进而执行dep.depend()进行依赖收集
+在执行this.getter()回调时，我们劫持到数据访问走到 getter，进而执行dep.depend()进行依赖收集
 
 ## Observer
 我们只会在 Observer 类 和 defineReactive 函数中实例化 dep。在 getter 方法中执行dep.depend()依赖收集，在 setter 方法中执行dep.notity()派发更新通知
